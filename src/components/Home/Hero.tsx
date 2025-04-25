@@ -1,30 +1,74 @@
 import Image from "next/image";
 import React from "react";
 import homeBG from "../../../public/home_bg.png";
+import Link from "next/link";
+import { BiRightArrowAlt } from "react-icons/bi";
+import { FaLocationDot, FaBuilding, FaMapLocationDot } from "react-icons/fa6";
+import { FaWalking } from "react-icons/fa";
 
 const Hero: React.FC = () => {
   return (
-    <div className="maxWidth">
-      <div className="flex gap-6 items-center px-6 py-18">
-        <div className="lg:w-1/2 ">
-          <p className="text-[#2d3142] text-lg uppercase">
+    <div className="bg-light">
+      <div className="maxWidth px-6 flex max-lg:text-center lg:flex-row flex-col gap-8 items-center lg:py-18 py-8">
+        <div className="lg:w-1/2">
+          <p className="md:text-xl uppercase font-semibold px-6">
             Redeemers University Smart Campus Navigation System
           </p>
-          <h1 className="font-black text-[#000079] text-7xl my-6">
+          <h1 className="font-black text-accent md:text-6xl text-5xl my-6">
             Never Lost, Always on Time
           </h1>
-          <p>
+          <p className="text-lg   font-[400]">
             Get turn-by-turn guidance to any classroom, office, or campus
             facility.
           </p>
+          <div className="flex max-lg:flex-col items-center justify-center gap-6 my-10 w-full">
+            <Link
+              href="/"
+              className="flex items-center gap-2 text-white px-6 py-4 justify-center rounded-4xl font-bold text-g bg-linear-to-bl from-accent-light to-accent shadow-[0_10px_20px_rgba(0,0,121,0.2)] text-lg md:w-1/2 w-full"
+            >
+              Find Your Way
+              <div>
+                <BiRightArrowAlt />
+              </div>
+            </Link>
+            <Link
+              href="/"
+              className="flex items-center gap-2 border-accent border-2 text-accent px-5 py-4 justify-center rounded-4xl font-bold text-lg md:w-1/2 w-full"
+            >
+              My Location on Map
+              <div>
+                <FaLocationDot />
+              </div>
+            </Link>
+          </div>
+          <div className="flex items-center justify-center gap-6 flex-wrap text-secondary">
+            <div className="flex items-center gap-2">
+              <div>
+                <FaMapLocationDot />
+              </div>
+              <p>Interactive Maps</p>
+            </div>
+            <div className="flex items-center gap-2">
+              <div>
+                <FaWalking />
+              </div>
+              <p>Walking Directions</p>
+            </div>
+            <div className="flex items-center gap-2">
+              <div>
+                <FaBuilding />
+              </div>
+              <p>Building Info</p>
+            </div>
+          </div>
         </div>
         <div className="lg:w-1/2">
           <Image
             src={homeBG}
             alt="home image"
-            className="relative rounded-[30px] overflow-hidden shadow-[0_20px_40px_rgba(0,0,0,0.1)] transform perspective-[1000px] -rotate-y-[5deg] transition-all duration-500 bg-[#f5f7fa] p-5"
+            className="relative rounded-[30px] overflow-hidden shadow-[0_20px_40px_rgba(0,0,0,0.1)] transform perspective-[1000px] -rotate-y-[5deg] transition-all duration-500 bg-light p-5"
           />
-        </div>{" "}
+        </div>
       </div>
     </div>
   );

@@ -43,6 +43,13 @@
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
   --font-inter: "Inter", sans-serif;
+  --color-primary: #2d3142;
+  --color-secondary: #4f5d75;
+  --color-accent: #000079;
+  --color-accent-light: #a0a0f1;
+  --color-light: #f5f7fa;
+  --color-dark: #1c1e26;
+  --color-success: #dbc974;
 }
 
 :root {
