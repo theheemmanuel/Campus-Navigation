@@ -1,3 +1,4 @@
+import Footer from "@/components/Shared/Footer";
 import Header from "@/components/Shared/Header";
 
 export default function RootLayout({
@@ -9,6 +10,7 @@ export default function RootLayout({
     <div suppressHydrationWarning>
       <Header />
       {children}
+      <Footer />
     </div>
   );
 }
