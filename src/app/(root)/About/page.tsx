@@ -10,16 +10,20 @@ const page: NextPage = () => {
             How We <span className="text-accent">Guide You</span>
           </h1>
           <div className="my-6">
-            <h2 className="text-[#1e3a8a] md:text-3xl text-2xl font-bold">
-              Our Story
-            </h2>
+            <div>
+              <h2 className="text-[#1e3a8a] md:text-3xl text-2xl font-bold">
+                Our Story
+              </h2>
+              <div className="mt-1 h-1 w-12 bg-blue-500"></div>
+            </div>
             <p className="my-4 text-primary text-lg">
               This platform was developed as a final-year project by four
               dedicated students—Edward Favour, Oladiran Emmanuel, Omolaja
-              Emmanuel, and Oni Emmanuel. Their project, titled "Development of
-              a Smart Campus Navigation System with Real-Time Guidance and
-              Accessibility Features," set out to address a common challenge on
-              campus: helping newcomers find their way with ease.
+              Emmanuel, and Oni Emmanuel. Their project, titled
+              &quot;Development of a Smart Campus Navigation System with
+              Real-Time Guidance and Accessibility Features,&quot; set out to
+              address a common challenge on campus: helping newcomers find their
+              way with ease.
             </p>
             <p className="text-primary text-lg pb-6">
               Designed with both innovation and inclusivity in mind, the system
@@ -32,9 +36,10 @@ const page: NextPage = () => {
             <h2 className="text-[#1e3a8a] md:text-3xl text-2xl font-bold">
               What We Offer
             </h2>
+            <div className="mt-1 h-1 w-12 bg-blue-500"></div>
             <div className="grid md:grid-cols-2 grid-cols-1 md:gap-x-6 md:gap-y-6">
               <div className="my-5">
-                <h3 className="text-xl text-[#1e3a8a] font-semibold mb-2">
+                <h3 className="text-xl text-[#1e3a8a] font-bold mb-2">
                   Real-Time Campus Navigation
                 </h3>
                 <p className="text-primary text-lg">
@@ -44,7 +49,7 @@ const page: NextPage = () => {
                 </p>
               </div>
               <div className="my-5">
-                <h3 className="text-xl text-[#1e3a8a] font-semibold mb-2">
+                <h3 className="text-xl text-[#1e3a8a] font-bold mb-2">
                   Smart Location Detection
                 </h3>
                 <p className="text-primary text-lg">
@@ -54,7 +59,7 @@ const page: NextPage = () => {
                 </p>
               </div>
               <div className="my-5">
-                <h3 className="text-xl text-[#1e3a8a] font-semibold mb-2">
+                <h3 className="text-xl text-[#1e3a8a] font-bold mb-2">
                   Building Information Access
                 </h3>
                 <p className="text-primary text-lg">
@@ -64,7 +69,7 @@ const page: NextPage = () => {
                 </p>
               </div>
               <div className="my-5">
-                <h3 className="text-xl text-[#1e3a8a] font-semibold mb-2">
+                <h3 className="text-xl text-[#1e3a8a] font-bold mb-2">
                   Visitor-Friendly Mode
                 </h3>
                 <p className="text-primary text-lg">
