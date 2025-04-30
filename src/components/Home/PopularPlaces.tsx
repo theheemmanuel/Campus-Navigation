@@ -44,7 +44,7 @@ const PopularPlaces: React.FC = () => {
     <div className="bg-[#faf8fd]">
       <div className="maxWidth px-8 py-10">
         <h1 className="text-primary font-bold md:text-5xl text-4xl">
-          Popular Places
+          Popular Places 🗺️
         </h1>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 my-12">
           {places.map((each) => (

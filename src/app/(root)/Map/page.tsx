@@ -22,10 +22,7 @@ const page: NextPage = () => {
             Click Here For My Location
           </button>
         </div>
-        <div
-          className="my-8 bg-white p-6 rounded-xl flex justify-center items-center"
-          style={{ height: "50vh" }}
-        ></div>
+        <div className="my-8 bg-white p-6 rounded-xl flex justify-center items-center h-[50vh]"></div>
       </div>
     </div>
   );

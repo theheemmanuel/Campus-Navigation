@@ -5,6 +5,9 @@ import Link from "next/link";
 import { BiRightArrowAlt } from "react-icons/bi";
 import { FaLocationDot, FaBuilding, FaMapLocationDot } from "react-icons/fa6";
 import { FaWalking } from "react-icons/fa";
+import { MdAssistantNavigation, MdExplore } from "react-icons/md";
+import { MdOutlineAccessTimeFilled } from "react-icons/md";
+import { RiHome4Fill } from "react-icons/ri";
 
 const Hero: React.FC = () => {
   return (
@@ -15,7 +18,7 @@ const Hero: React.FC = () => {
             Redeemers University Smart Campus Navigation System
           </p>
           <h1 className="font-black text-accent md:text-6xl text-5xl my-6">
-            Never Lost, Always on Time
+            Never Lost, Always on-Time
           </h1>
           <p className="text-lg   font-[400]">
             Get turn-by-turn guidance to any classroom, office, or campus
@@ -68,6 +71,56 @@ const Hero: React.FC = () => {
             alt="home image"
             className="relative rounded-[30px] overflow-hidden shadow-[0_20px_40px_rgba(0,0,0,0.1)] transform perspective-[1000px] -rotate-y-[5deg] transition-all duration-500 bg-light p-5"
           />
+        </div>
+      </div>
+      <div className="bg-black p-4 flex gap-8 text-white font-semibold overflow-x-auto scrollbar-hide text-nowrap">
+        <div className="flex items-center gap-2">
+          <FaLocationDot size={20} />
+          <p>Locate</p>
+        </div>
+        <div className="flex items-center gap-2">
+          <MdAssistantNavigation size={20} />
+          <p>Navigate</p>
+        </div>
+        <div className="flex items-center gap-2">
+          <MdExplore size={20} />
+          <p>Explore</p>
+        </div>
+        <div className="flex items-center gap-2">
+          <FaWalking size={20} />
+          <p>Arrive</p>
+        </div>
+        <div className="flex items-center gap-2">
+          <MdOutlineAccessTimeFilled size={20} />
+          <p>On-Time</p>
+        </div>
+        <div className="flex items-center gap-2">
+          <RiHome4Fill size={20} />
+          <p>Discover</p>
+        </div>
+        <div className="flex items-center gap-2">
+          <FaLocationDot size={20} />
+          <p>Locate</p>
+        </div>
+        <div className="flex items-center gap-2">
+          <MdAssistantNavigation size={20} />
+          <p>Navigate</p>
+        </div>
+        <div className="flex items-center gap-2">
+          <MdExplore size={20} />
+          <p>Explore</p>
+        </div>
+        <div className="flex items-center gap-2">
+          <FaWalking size={20} />
+          <p>Arrive</p>
+        </div>
+        <div className="flex items-center gap-2">
+          <MdOutlineAccessTimeFilled size={20} />
+          <p>On-Time</p>
+        </div>
+        <div className="flex items-center gap-2">
+          <RiHome4Fill size={20} />
+          <p>Discover</p>
         </div>
       </div>
     </div>
