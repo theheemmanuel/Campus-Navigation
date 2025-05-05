@@ -1,11 +1,11 @@
 import { NextPage } from "next";
 import React from "react";
-// import { FaLocationDot } from "react-icons/fa6";
+import { FaLocationDot } from "react-icons/fa6";
 
 const page: NextPage = () => {
   return (
     <div className="bg-light">
-      {/* <div className="maxWidth p-6">
+      <div className="maxWidth p-6">
         <div className="">
           <h1 className="text-3xl md:text-4xl text-accent text-center pt-6 font-bold">
             RUN Campus Interactive Map
@@ -23,8 +23,7 @@ const page: NextPage = () => {
           </button>
         </div>
         <div className="my-8 bg-white p-6 rounded-xl flex justify-center items-center h-[50vh]"></div>
-      </div> */}
-      
+      </div>
     </div>
   );
 };
