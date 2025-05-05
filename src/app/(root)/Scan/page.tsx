@@ -21,7 +21,7 @@ const page: NextPage = () => {
             QR Code Scanner
           </h3>
           <button className="bg-accent rounded-xl px-6 text-white mt-4 py-2 inline">
-            <RiDashboardFill className="inline mr-2"/>
+            <RiDashboardFill className="inline mr-2" />
             Start Scanning
           </button>
         </div>

@@ -6,7 +6,7 @@ const page: NextPage = () => {
   return (
     <div className="bg-light">
       <div className="maxWidth p-6">
-        <div className="py6">
+        <div className="">
           <h1 className="text-3xl md:text-4xl text-accent text-center pt-6 font-bold">
             RUN Campus Interactive Map
           </h1>

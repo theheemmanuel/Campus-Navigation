@@ -9,6 +9,7 @@ import {
   Sheet,
   SheetContent,
   SheetDescription,
+  SheetFooter,
   SheetHeader,
   SheetTitle,
   SheetTrigger,
@@ -58,8 +59,8 @@ const Header: React.FC = () => {
           </div>
           <div className="max-lg:hidden">
             <Link
-              href="/"
-              className="flex items-center gap-2 bg-accent text-white px-5 py-3 rounded-3xl font-bold text-g"
+              href="/videotour"
+              className="flex items-center gap-2 bg-accent text-white px-5 py-3 rounded-3xl font-bold"
             >
               Video Tour <FaCirclePlay />
             </Link>
@@ -134,6 +135,16 @@ const Header: React.FC = () => {
               </SheetTrigger>
             </SheetDescription>
           </SheetHeader>
+          <SheetFooter>
+            <SheetTrigger asChild>
+              <Link
+                href="/videotour"
+                className="flex items-center gap-2 bg-accent text-white px-5 py-3 rounded-3xl font-bold justify-center"
+              >
+                Video Tour <FaCirclePlay />
+              </Link>
+            </SheetTrigger>
+          </SheetFooter>
         </SheetContent>
       </Sheet>
     </div>
