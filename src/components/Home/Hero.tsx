@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Marquee from "react-fast-marquee";
 import React from "react";
 import homeBG from "../../../public/home_bg.png";
 import Link from "next/link";
@@ -73,56 +74,64 @@ const Hero: React.FC = () => {
           />
         </div>
       </div>
-      <div className="bg-black p-4 flex gap-8 text-white font-semibold overflow-x-auto scrollbar-hide text-nowrap">
-        <div className="flex items-center gap-2">
-          <FaLocationDot size={20} />
-          <p>Locate</p>
+      <Marquee
+        direction="left"
+        speed={100}
+        gradient={false}
+        className="bg-black p-4"
+      >
+        <div className="flex items-center gap-12 text-white font-semibold">
+          <div className="flex items-center gap-2">
+            <FaLocationDot size={20} />
+            <p>Locate</p>
+          </div>
+          <div className="flex items-center gap-2">
+            <MdAssistantNavigation size={20} />
+            <p>Navigate</p>
+          </div>
+          <div className="flex items-center gap-2">
+            <MdExplore size={20} />
+            <p>Explore</p>
+          </div>
+          <div className="flex items-center gap-2">
+            <FaWalking size={20} />
+            <p>Arrive</p>
+          </div>
+          <div className="flex items-center gap-2">
+            <MdOutlineAccessTimeFilled size={20} />
+            <p>On-Time</p>
+          </div>
+          <div className="flex items-center gap-2">
+            <RiHome4Fill size={20} />
+            <p>Discover</p>
+          </div>
+          <div className="flex items-center gap-2">
+            <FaLocationDot size={20} />
+            <p>Locate</p>
+          </div>
+          <div className="flex items-center gap-2">
+            <MdAssistantNavigation size={20} />
+            <p>Navigate</p>
+          </div>
+          <div className="flex items-center gap-2">
+            <MdExplore size={20} />
+            <p>Explore</p>
+          </div>
+          <div className="flex items-center gap-2">
+            <FaWalking size={20} />
+            <p>Arrive</p>
+          </div>
+          <div className="flex items-center gap-2">
+            <MdOutlineAccessTimeFilled size={20} />
+            <p>On-Time</p>
+          </div>
+          <div className="flex items-center gap-2">
+            <RiHome4Fill size={20} />
+            <p>Discover</p>
+          </div>
+          <div className="flex items-center gap-2"></div>
         </div>
-        <div className="flex items-center gap-2">
-          <MdAssistantNavigation size={20} />
-          <p>Navigate</p>
-        </div>
-        <div className="flex items-center gap-2">
-          <MdExplore size={20} />
-          <p>Explore</p>
-        </div>
-        <div className="flex items-center gap-2">
-          <FaWalking size={20} />
-          <p>Arrive</p>
-        </div>
-        <div className="flex items-center gap-2">
-          <MdOutlineAccessTimeFilled size={20} />
-          <p>On-Time</p>
-        </div>
-        <div className="flex items-center gap-2">
-          <RiHome4Fill size={20} />
-          <p>Discover</p>
-        </div>
-        <div className="flex items-center gap-2">
-          <FaLocationDot size={20} />
-          <p>Locate</p>
-        </div>
-        <div className="flex items-center gap-2">
-          <MdAssistantNavigation size={20} />
-          <p>Navigate</p>
-        </div>
-        <div className="flex items-center gap-2">
-          <MdExplore size={20} />
-          <p>Explore</p>
-        </div>
-        <div className="flex items-center gap-2">
-          <FaWalking size={20} />
-          <p>Arrive</p>
-        </div>
-        <div className="flex items-center gap-2">
-          <MdOutlineAccessTimeFilled size={20} />
-          <p>On-Time</p>
-        </div>
-        <div className="flex items-center gap-2">
-          <RiHome4Fill size={20} />
-          <p>Discover</p>
-        </div>
-      </div>
+      </Marquee>
     </div>
   );
 };
