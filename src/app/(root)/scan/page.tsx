@@ -1,10 +1,54 @@
+"use client";
+
 import { NextPage } from "next";
-import React from "react";
+import React, { useState } from "react";
 import { FaLocationDot, FaClock, FaCircleInfo } from "react-icons/fa6";
 import { MdDirections } from "react-icons/md";
 import { RiDashboardFill } from "react-icons/ri";
+// import dynamic from "next/dynamic";
+import { useRouter } from "next/navigation";
+import { QrReader } from "react-qr-reader";
 
-const page: NextPage = () => {
+// Dynamically import QrReader to avoid SSR issues
+// const QrReader = dynamic(() => import("react-qr-reader"), {
+//   ssr: false,
+// });
+
+const ScanPage: NextPage = () => {
+  const [scanning, setScanning] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const router = useRouter();
+
+  const handleScan = (data: string | null) => {
+    if (data) {
+      console.log("QR Code detected:", data);
+
+      // Check if the scanned data is a valid URL
+      try {
+        // Navigate to the URL if it's valid
+        router.push(data);
+      } catch (e) {
+        console.log(e);
+        // If it's not a URL, just display the data
+        alert(`QR Code content: ${data}`);
+        setScanning(false);
+      }
+    }
+  };
+
+  const handleError = (err: Error) => {
+    console.error(err);
+    setError(
+      "Error accessing camera. Please make sure you've granted camera permissions."
+    );
+    setScanning(false);
+  };
+
+  const startScanning = () => {
+    setError(null);
+    setScanning(true);
+  };
+
   return (
     <div className="bg-light">
       <div className="maxWidth p-6">
@@ -20,10 +64,40 @@ const page: NextPage = () => {
           <h3 className="text-primary text-2xl pb-5 font-bold">
             QR Code Scanner
           </h3>
-          <button className="bg-accent rounded-xl px-6 text-white mt-4 py-2 inline">
-            <RiDashboardFill className="inline mr-2" />
-            Start Scanning
-          </button>
+
+          {scanning ? (
+            <div className="w-full max-w-md mx-auto">
+              <QrReader
+                constraints={{ facingMode: "environment" }}
+                onResult={(result, error) => {
+                  if (result) {
+                    handleScan(result.getText());
+                  }
+                  if (error) {
+                    handleError(error);
+                  }
+                }}
+                containerStyle={{ width: "100%" }}
+              />
+              <button
+                onClick={() => setScanning(false)}
+                className="cursor-pointer bg-red-500 rounded-xl px-6 text-white mt-4 py-2 inline"
+              >
+                Cancel
+              </button>
+            </div>
+          ) : (
+            <>
+              <button
+                onClick={startScanning}
+                className="cursor-pointer bg-accent rounded-xl px-6 text-white mt-4 py-2 inline"
+              >
+                <RiDashboardFill className="inline mr-2" />
+                Start Scanning
+              </button>
+              {error && <p className="text-red-500 mt-4">{error}</p>}
+            </>
+          )}
         </div>
         <div className="md:w-3/4 mx-auto py-8 my-8 bg-white p-[30px] rounded-[20px] shadow-[0_15px_30px_rgba(0,0,121,0.1)]">
           <h3 className="text-accent text-2xl pb-5 font-bold text-center">
@@ -85,5 +159,4 @@ const page: NextPage = () => {
     </div>
   );
 };
-
-export default page;
+export default ScanPage;
