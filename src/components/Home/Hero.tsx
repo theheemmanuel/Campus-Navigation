@@ -27,7 +27,7 @@ const Hero: React.FC = () => {
           </p>
           <div className="flex max-lg:flex-col items-center justify-center gap-6 my-10 w-full">
             <Link
-              href="/"
+              href="/scan"
               className="flex items-center gap-2 text-white px-6 py-4 justify-center rounded-4xl font-bold text-g bg-linear-to-bl from-accent-light to-accent shadow-[0_10px_20px_rgba(0,0,121,0.2)] text-lg md:w-1/2 w-full"
             >
               Find Your Way
@@ -36,7 +36,7 @@ const Hero: React.FC = () => {
               </div>
             </Link>
             <Link
-              href="/"
+              href="/map"
               className="flex items-center gap-2 border-accent border-2 text-accent px-5 py-4 justify-center rounded-4xl font-bold text-lg md:w-1/2 w-full"
             >
               My Location on Map

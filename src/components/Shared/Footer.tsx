@@ -10,16 +10,16 @@ const Footer: React.FC = () => {
         <div>
           <h1 className="font-bold mb-4 text-xl">Navigation</h1>
           <ul className="flex flex-col gap-3 text-secondary text-lg">
-            <Link href="">Video Tour</Link>
-            <Link href="">Map</Link>
-            <Link href="">Scan QR Code</Link>
+            <Link href="/videotour">Video Tour</Link>
+            <Link href="/map">Map</Link>
+            <Link href="/scan">Scan QR Code</Link>
           </ul>
         </div>
         <div>
           <h1 className="font-bold mb-4 text-xl">Important Links</h1>
           <ul className="flex flex-col gap-3 text-secondary text-lg">
-            <Link href="">Home</Link>
-            <Link href="">About</Link>
+            <Link href="/">Home</Link>
+            <Link href="/about">About</Link>
           </ul>
         </div>
         <div>
