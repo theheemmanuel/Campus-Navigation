@@ -11,7 +11,7 @@ const Scan: React.FC = () => {
           exact location
         </h2>
         <Link
-          href="/"
+          href="/scan"
           className="flex items-center gap-2 mt-12 bg-white rounded-4xl w-fit px-12 py-4 mx-auto font-semibold text-lg text-primary"
         >
           <button>Scan QR Code</button>
