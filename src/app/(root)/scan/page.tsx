@@ -1,102 +1,20 @@
 "use client";
 
 import { NextPage } from "next";
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState } from "react";
 import { FaLocationDot, FaClock, FaCircleInfo } from "react-icons/fa6";
 import { MdDirections } from "react-icons/md";
 import { RiDashboardFill } from "react-icons/ri";
-import { useRouter } from "next/navigation";
-import { Html5Qrcode } from "html5-qrcode";
+import { Scanner } from "@yudiel/react-qr-scanner";
 
 const ScanPage: NextPage = () => {
-  const [scanning, setScanning] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-  const router = useRouter();
-  const scannerRef = useRef<Html5Qrcode | null>(null);
-  const scannerContainerRef = useRef<HTMLDivElement>(null);
+  const [isScanning, setIsScanning] = useState(false);
+  const [scannedResult, setScannedResult] = useState<string | null>(null);
 
-  useEffect(() => {
-    // Clean up scanner when component unmounts
-    return () => {
-      if (scannerRef.current) {
-        scannerRef.current.stop().catch((error) => {
-          console.error("Failed to stop scanner:", error);
-        });
-      }
-    };
-  }, []);
-
-  const startScanning = async () => {
-    setError(null);
-    setScanning(true);
-
-    try {
-      if (!scannerContainerRef.current) {
-        throw new Error("Scanner container not found");
-      }
-
-      // Initialize the scanner
-      scannerRef.current = new Html5Qrcode("qr-reader");
-
-      const qrCodeSuccessCallback = (decodedText: string) => {
-        console.log(`QR Code detected: ${decodedText}`);
-
-        // Stop scanning after successful detection
-        if (scannerRef.current) {
-          scannerRef.current
-            .stop()
-            .then(() => {
-              // Check if the scanned data is a URL
-              try {
-                new URL(decodedText);
-                // Navigate to the URL if it's valid
-                router.push(decodedText);
-              } catch (e) {
-                // If it's not a URL, just display the data
-                console.log(e);
-                alert(`QR Code content: ${decodedText}`);
-              }
-              setScanning(false);
-            })
-            .catch((err) => {
-              console.error("Failed to stop scanner:", err);
-              setScanning(false);
-            });
-        }
-      };
-
-      const config = {
-        fps: 10,
-        qrbox: { width: 250, height: 250 },
-        aspectRatio: 1.0,
-      };
-
-      await scannerRef.current.start(
-        { facingMode: "environment" },
-        config,
-        qrCodeSuccessCallback,
-        (errorMessage) => {
-          console.log(errorMessage); // QR Code scanning errors are ignored as they happen frequently
-          // when no QR code is in view
-        }
-      );
-    } catch (err) {
-      console.error("Error starting scanner:", err);
-      setError(
-        "Error accessing camera. Please make sure you've granted camera permissions and are using a secure connection (HTTPS)."
-      );
-      setScanning(false);
-    }
-  };
-
-  const stopScanning = async () => {
-    if (scannerRef.current) {
-      try {
-        await scannerRef.current.stop();
-        setScanning(false);
-      } catch (err) {
-        console.error("Error stopping scanner:", err);
-      }
+  const toggleScanner = () => {
+    setIsScanning(!isScanning);
+    if (isScanning) {
+      setScannedResult(null);
     }
   };
 
@@ -116,31 +34,45 @@ const ScanPage: NextPage = () => {
             QR Code Scanner
           </h3>
 
-          {scanning ? (
-            <div className="w-full max-w-md mx-auto">
-              <div
-                id="qr-reader"
-                ref={scannerContainerRef}
-                className="w-full"
-              ></div>
-              <button
-                onClick={stopScanning}
-                className="cursor-pointer bg-red-500 rounded-xl px-6 text-white mt-4 py-2 inline"
-              >
-                Cancel
-              </button>
+          <button
+            className="cursor-pointer bg-accent rounded-xl px-6 text-white mt-4 py-2 inline"
+            onClick={toggleScanner}
+          >
+            <RiDashboardFill className="inline mr-2" />
+            {isScanning ? "Stop Scanning" : "Start Scanning"}
+          </button>
+
+          {isScanning && (
+            <div className="mt-4">
+              <Scanner
+                onScan={(detectedCodes) => {
+                  console.log("Scan result:", detectedCodes);
+
+                  if (detectedCodes && detectedCodes.length > 0) {
+                    const firstResult = detectedCodes[0];
+                    if (firstResult && firstResult.rawValue) {
+                      setScannedResult(firstResult.rawValue);
+                      setIsScanning(false);
+                    }
+                  }
+                }}
+                onError={(error) => {
+                  console.error("Scan error:", error);
+                }}
+              />
             </div>
-          ) : (
-            <>
-              <button
-                onClick={startScanning}
-                className="cursor-pointer bg-accent rounded-xl px-6 text-white mt-4 py-2 inline"
+          )}
+
+          {scannedResult && (
+            <div className="mt-6 p-4 bg-light rounded-lg">
+              <h4 className="text-accent font-bold mb-2">Detected Link:</h4>
+              <a
+                href={scannedResult}
+                className="text-blue-600 underline break-all"
               >
-                <RiDashboardFill className="inline mr-2" />
-                Start Scanning
-              </button>
-              {error && <p className="text-red-500 mt-4">{error}</p>}
-            </>
+                {scannedResult}
+              </a>
+            </div>
           )}
         </div>
         <div className="md:w-3/4 mx-auto py-8 my-8 bg-white p-[30px] rounded-[20px] shadow-[0_15px_30px_rgba(0,0,121,0.1)]">
@@ -203,5 +135,4 @@ const ScanPage: NextPage = () => {
     </div>
   );
 };
-
 export default ScanPage;
