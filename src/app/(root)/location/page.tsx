@@ -157,6 +157,51 @@ const LocationPage: NextPage = () => {
               </div>
             </div>
           </div>
+          <div className="py-6">
+            <div className="text-center">
+              <h1 className="text-accent font-bold text-4xl">
+                Available Services
+              </h1>
+              <div className="h-1 w-16 mx-auto my-2 bg-accent justify-center"></div>
+              <p className="text-secondary font-semibold text-lg">
+                Explore the various services offered at the University Library
+              </p>
+            </div>
+            <div className="grid pt-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              <div className="bg-white rounded-xl shadow-2xl p-6 text-center">
+                <h3 className="text-primary font-bold text-xl">Computer Lab</h3>
+                <p className="text-secondary">
+                  Access high-speed computers with internet connectivity and
+                  specialized academic software for research and assignments.
+                </p>
+                <div className="flex items-center gap-2 justify-center mt-4">
+                  <p>Learn more</p>
+                </div>
+              </div>
+              <div className="bg-white rounded-xl shadow-2xl p-6 text-center">
+                <h3 className="text-primary font-bold text-xl">
+                  Printing & Photocopying
+                </h3>
+                <p className="text-secondary">
+                  Print, scan, and photocopy services available at affordable
+                  rates for students and staff members.
+                </p>
+                <div className="flex items-center gap-2 justify-center mt-4">
+                  <p>Learn more</p>
+                </div>
+              </div>
+              <div className="bg-white rounded-xl shadow-2xl p-6 text-center">
+                <h3 className="text-primary font-bold text-xl">Study Rooms</h3>
+                <p className="text-secondary">
+                  Book private and group study rooms equipped with whiteboards
+                  and presentation displays.
+                </p>
+                <div className="flex items-center gap-2 justify-center mt-4">
+                  <p>Learn more</p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
