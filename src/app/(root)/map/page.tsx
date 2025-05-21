@@ -5,7 +5,7 @@ import { FaLocationDot } from "react-icons/fa6";
 export const metadata: Metadata = {
   title: "Map | Redeemer's University",
   description:
-    "Explore our hotel through stunning images. View our elegant rooms, facilities, dining areas, and beautiful surroundings to get a glimpse of the experience awaiting you.",
+    "An interactive campus navigation app for Redeemer's University, helping visitors and students easily find their way around campus with maps, location scanning, and virtual video tours",
 };
 
 const page: NextPage = () => {
