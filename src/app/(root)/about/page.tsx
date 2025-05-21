@@ -1,5 +1,11 @@
-import { NextPage } from "next";
+import { Metadata, NextPage } from "next";
 import React from "react";
+
+export const metadata: Metadata = {
+  title: "About | Redeemer's University",
+  description:
+    "Explore our hotel through stunning images. View our elegant rooms, facilities, dining areas, and beautiful surroundings to get a glimpse of the experience awaiting you.",
+};
 
 const page: NextPage = () => {
   return (

@@ -1,6 +1,12 @@
-import { NextPage } from "next";
+import { Metadata, NextPage } from "next";
 import React from "react";
 import { FaLocationDot } from "react-icons/fa6";
+
+export const metadata: Metadata = {
+  title: "Map | Redeemer's University",
+  description:
+    "Explore our hotel through stunning images. View our elegant rooms, facilities, dining areas, and beautiful surroundings to get a glimpse of the experience awaiting you.",
+};
 
 const page: NextPage = () => {
   return (

@@ -5,7 +5,7 @@ import { ThemeProvider } from "@/components/ui/theme-provider";
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL as string),
   title: {
-    default: "Redeemer's University Tour",
+    default: "Redeemer's University | Campus Navigation App",
     template: "%s | Campus Navigation App",
   },
   description:
