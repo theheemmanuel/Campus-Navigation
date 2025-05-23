@@ -10,33 +10,39 @@ import Link from "next/link";
 
 const PopularPlaces: React.FC = () => {
   const places = [
-    { id: "1", name: "Main Gate", image: gate, url: "", tag: ["Security"] },
+    {
+      id: "1",
+      name: "Main Gate",
+      image: gate,
+      url: "location?id=Main Gate",
+      tag: ["Security"],
+    },
     {
       id: "2",
       name: "RUN Auditorium",
       image: chapel,
-      url: "",
+      url: "location?id=RUN Auditorium",
       tag: ["Auditorium"],
     },
     {
       id: "3",
       name: "Faculty of Medical Sciences",
       image: bms,
-      url: "",
+      url: "location?id=Faculty of Medical Sciences",
       tag: ["Faculty"],
     },
     {
       id: "4",
       name: "Faculty of Engineering",
       image: sapetro,
-      url: "",
+      url: "location?id=Faculty of Engineering",
       tag: ["Faculty"],
     },
     {
       id: "5",
       name: "Zenith ICT Center",
       image: zenith,
-      url: "",
+      url: "location?id=Zenith ICT Center",
       tag: ["Troubleshooting", "technical Problem"],
     },
   ];
