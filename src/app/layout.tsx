@@ -33,7 +33,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <link rel="icon" href="/run.png" sizes="any" />
+      <link rel="icon" href="/icon.png" sizes="any" />
       <body className={`antialiased font-roboto`}>
         <ThemeProvider
           attribute="class"
