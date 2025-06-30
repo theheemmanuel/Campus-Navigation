@@ -104,7 +104,7 @@ const MapPage = () => {
             Locate Me
           </button>
         </div>
-        <div className="my-8 bg-white p-4 rounded-xl flex justify-center items-center h-[50vh]">
+        <div className="my-8 bg-white p-4 rounded-xl flex justify-center items-center md:h-[60vh] h-[70vh]">
           <MapComponent
             userLocation={userLocation}
             showUserLocation={showUserLocation}
