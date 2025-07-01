@@ -71,6 +71,7 @@ const MapComponent = ({
       center={defaultCenter}
       zoom={defaultZoom}
       style={{ height: "100%", width: "100%", borderRadius: "0.5rem" }}
+      className="z-100"
     >
       <TileLayer
         url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
