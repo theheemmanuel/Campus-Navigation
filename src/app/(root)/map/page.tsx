@@ -5,13 +5,10 @@ import { FaLocationDot } from "react-icons/fa6";
 import { campusPlaces } from "@/components/Map/CampusPlaces";
 import dynamic from "next/dynamic";
 
-const MapComponent = dynamic(
-  () => import('@/components/Map/MapComponent'),
-  { 
-    ssr: false,
-    loading: () => <p>Loading map...</p>
-  }
-);
+const MapComponent = dynamic(() => import("@/components/Map/MapComponent"), {
+  ssr: false,
+  loading: () => <p>Loading map...</p>,
+});
 
 const MapPage = () => {
   const [userLocation, setUserLocation] = useState<[number, number] | null>(
@@ -95,6 +92,17 @@ const MapPage = () => {
   return (
     <div className="bg-light">
       <div className="maxWidth p-4">
+        <div className="">
+          <h1 className="text-3xl md:text-4xl text-accent text-center pt-6 font-bold">
+            RUN Campus Interactive Map
+          </h1>
+          <p className="md:w-2/4 text-center mx-auto py-6">
+            Explore Redeemers University campus, find your way to buildings, and
+            discover key locations with our interactive map. Never get lost on
+            campus again!
+          </p>
+        </div>
+
         <div className="flex justify-center">
           <button
             onClick={handleLocationClick}
