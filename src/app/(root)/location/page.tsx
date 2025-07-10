@@ -1,6 +1,6 @@
 import { Metadata, NextPage } from "next";
 import React from "react";
-// import CurrentLocation from "@/components/Location/CurrentLocation";
+import CurrentLocation from "@/components/Location/CurrentLocation";
 
 export const metadata: Metadata = {
   title: "Location | Redeemer's University",
@@ -12,7 +12,7 @@ const LocationPage: NextPage = () => {
   return (
     <div className="bg-light">
       <div className="maxWidth px-6 py-12">
-        {/* <CurrentLocation /> */}
+        <CurrentLocation />
       </div>
     </div>
   );
