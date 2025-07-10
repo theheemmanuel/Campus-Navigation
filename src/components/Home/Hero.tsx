@@ -37,7 +37,7 @@ const Hero: React.FC = () => {
             </Link>
             <Link
               href="/map"
-              className="flex items-center gap-2 border-accent border-2 text-accent px-5 py-4 justify-center rounded-4xl font-bold text-lg md:w-1/2 w-full"
+              className="flex items-center gap-2 border-accent border-2 text-accent px-5 py-4 justify-center rounded-4xl font-bold text-lg md:w-1/2 w-full text-center"
             >
               My Location on Map
               <div>
