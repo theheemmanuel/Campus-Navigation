@@ -1,10 +1,10 @@
 import Image from "next/image";
 import React from "react";
-import gate from "../../../public/gate.jpg";
 import chapel from "../../../public/chapel.jpg";
 import bms from "../../../public/bms.jpg";
 import sapetro from "../../../public/sapetro.jpg";
 import zenith from "../../../public/zenith.jpg";
+import lr from "../../../public/lr.png";
 import { BiRightArrowAlt } from "react-icons/bi";
 import Link from "next/link";
 
@@ -12,38 +12,45 @@ const PopularPlaces: React.FC = () => {
   const places = [
     {
       id: "1",
-      name: "Main Gate",
-      image: gate,
-      url: "location?id=Main Gate",
-      tag: ["Security"],
-    },
-    {
-      id: "2",
       name: "RUN Auditorium",
       image: chapel,
       url: "location?id=RUN Auditorium",
-      tag: ["Auditorium"],
+      tag: ["Auditorium","Chapel"],
     },
     {
-      id: "3",
+      id: "2",
       name: "Faculty of Medical Sciences",
       image: bms,
       url: "location?id=Faculty of Medical Sciences",
-      tag: ["Faculty"],
+      tag: ["Faculty", "BMS"],
     },
     {
-      id: "4",
+      id: "3",
       name: "Faculty of Engineering",
       image: sapetro,
       url: "location?id=Faculty of Engineering",
-      tag: ["Faculty"],
+      tag: ["Faculty", "Engineering"],
     },
     {
-      id: "5",
+      id: "4",
       name: "Zenith ICT Center",
       image: zenith,
       url: "location?id=Zenith ICT Center",
-      tag: ["Troubleshooting", "technical Problem"],
+      tag: ["Troubleshooting", "Technical Problem"],
+    },
+    {
+      id: "5",
+      name: "NLT",
+      image: lr,
+      url: "location?id=Natural Science Lecture Theatre",
+      tag: ["Lecture Theatre", "Natural Science"],
+    },
+    {
+      id: "6",
+      name: "Lecture Rooms",
+      image: lr,
+      url: "location?id=Lecture Rooms",
+      tag: ["Lecture"],
     },
   ];
   return (

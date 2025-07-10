@@ -48,7 +48,7 @@ export const campusPlaces = [
     position: [7.6792684444203685, 4.458783762422049] as [number, number],
   },
   {
-    name: "Manna Palca Cafeteria",
+    name: "Manna Palace Cafeteria",
     position: [7.678554960319264, 4.45698678565479] as [number, number],
   },
   {

@@ -18,7 +18,9 @@ const page: NextPage = () => {
           </h1>
           <div className="">
             <p className="md:w-2/4 text-center mx-auto py-4">
-              Explore popular routes across Redeemers University campus
+              Explore popular routes across Redeemers University campus with our
+              step-by-step video guides. Perfect for new students and visitors
+              to navigate between key locations with ease.
             </p>
             <div className="h-1 w-16 mx-auto bg-accent justify-center"></div>
           </div>
