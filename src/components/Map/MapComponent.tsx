@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
@@ -43,15 +43,32 @@ function LocationUpdater({
   userLocation: [number, number] | null;
 }) {
   const map = useMap();
+  const hasInitiallyFocused = useRef(false);
+  const userHasMoved = useRef(false);
 
   useEffect(() => {
-    if (userLocation) {
+    // Only fly to user location on first load
+    if (userLocation && !hasInitiallyFocused.current) {
       map.flyTo(userLocation, 18, {
         duration: 1,
         easeLinearity: 0.25,
       });
+      hasInitiallyFocused.current = true;
     }
   }, [userLocation, map]);
+
+  useEffect(() => {
+    // Track when user manually moves the map
+    const handleMoveStart = () => {
+      userHasMoved.current = true;
+    };
+
+    map.on("movestart", handleMoveStart);
+
+    return () => {
+      map.off("movestart", handleMoveStart);
+    };
+  }, [map]);
 
   return null;
 }
@@ -86,7 +103,7 @@ const MapComponent = ({
         </Marker>
       ))}
 
-      {/* User location with continuous updates */}
+      {/* User location with controlled updates */}
       {showUserLocation && userLocation && (
         <>
           <Marker position={userLocation} icon={createRedIcon()}>
