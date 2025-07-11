@@ -15,6 +15,14 @@ export const metadata: Metadata = {
   title: "Campus Locations | Redeemer's University",
   description:
     "Browse all campus locations at Redeemer's University. Find detailed information about buildings, facilities, and get directions.",
+  openGraph: {
+    title: "Campus Locations | Redeemer's University",
+    description:
+      "Browse all campus locations at Redeemer's University. Find detailed information about buildings, facilities, and get directions.",
+    images: [
+      new URL("/gate.jpg", process.env.NEXT_PUBLIC_BASE_URL as string).href,
+    ],
+  },
 };
 
 const LocationsPage: NextPage = () => {

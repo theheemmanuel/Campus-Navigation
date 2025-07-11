@@ -7,7 +7,15 @@ import { MdDirections } from "react-icons/md";
 export const metadata: Metadata = {
   title: "Scan | Redeemer's University",
   description:
-    "An interactive campus navigation app for Redeemer's University, helping visitors and students easily find their way around campus with maps, location scanning, and virtual video tours",
+    "Scan QR Codes to navigate Redeemer's University campus and explore virtual video tours of campus facilities.",
+  openGraph: {
+    title: "Scan | Redeemer's University",
+    description:
+      "Scan QR Codes to navigate Redeemer's University campus and explore virtual video tours of campus facilities.",
+    images: [
+      new URL("/gate.jpg", process.env.NEXT_PUBLIC_BASE_URL as string).href,
+    ],
+  },
 };
 
 const ScanPage: NextPage = () => {
