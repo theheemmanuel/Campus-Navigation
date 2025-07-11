@@ -2,14 +2,17 @@
 
 import React from "react";
 import Image from "next/image";
-import { useSearchParams } from "next/navigation";
 import { FaCirclePlay, FaLocationDot } from "react-icons/fa6";
 import chapel from "../../../public/sapetro.jpg";
 import Link from "next/link";
 
-const CurrentLocation = () => {
-  const searchParams = useSearchParams();
-  const id = searchParams.get("id");
+interface CurrentLocationProps {
+  locationId: string;
+}
+
+const CurrentLocation: React.FC<CurrentLocationProps> = ({ locationId }) => {
+  const decodedLocationId = decodeURIComponent(locationId);
+
   return (
     <>
       <div className="flex justify-center text-center flex-col gap-6">
@@ -17,7 +20,9 @@ const CurrentLocation = () => {
           <FaLocationDot color="#000079" />
           You are here
         </div>
-        <h1 className="font-bold md:text-5xl text-4xl text-accent">{id}</h1>
+        <h1 className="font-bold md:text-5xl text-4xl text-accent">
+          {decodedLocationId}
+        </h1>
         <p className="text-secondary font-semibold text-lg">
           Your gateway to knowledge, resources, and academic excellence at
           Redeemer&apos;s University
@@ -59,7 +64,7 @@ const CurrentLocation = () => {
         <h1 className="text-accent font-bold text-4xl">Find Your Way</h1>
         <div className="h-1 w-16 mx-auto my-2 bg-accent justify-center"></div>
         <p className="text-secondary font-semibold text-lg">
-          Explore directions to nearby locations from the University Library
+          Explore directions to nearby locations from {decodedLocationId}
           using the map and video tour.
         </p>
         <div className="flex items-center justify-center gap-4 my-6">

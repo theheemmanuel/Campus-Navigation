@@ -5,52 +5,53 @@ import bms from "../../../public/bms.jpg";
 import sapetro from "../../../public/sapetro.jpg";
 import zenith from "../../../public/zenith.jpg";
 import lr from "../../../public/lr.png";
-import { BiRightArrowAlt } from "react-icons/bi";
+// import { BiRightArrowAlt } from "react-icons/bi";
 import Link from "next/link";
+import { FaLocationDot } from "react-icons/fa6";
 
 const PopularPlaces: React.FC = () => {
-  const places = [
+  const locations = [
     {
-      id: "1",
+      id: "RUN Auditorium",
       name: "RUN Auditorium",
+      description: "Main auditorium for events and worship services",
       image: chapel,
-      url: "location?id=RUN Auditorium",
-      tag: ["Auditorium","Chapel"],
+      category: "Facilities",
     },
     {
-      id: "2",
-      name: "Faculty of Medical Sciences",
-      image: bms,
-      url: "location?id=Faculty of Medical Sciences",
-      tag: ["Faculty", "BMS"],
-    },
-    {
-      id: "3",
+      id: "Faculty of Engineering",
       name: "Faculty of Engineering",
+      description: "SAPETRO building housing engineering departments",
       image: sapetro,
-      url: "location?id=Faculty of Engineering",
-      tag: ["Faculty", "Engineering"],
+      category: "Academic",
     },
     {
-      id: "4",
+      id: "Faculty of Medical Sciences",
+      name: "Faculty of Medical Sciences",
+      description: "Medical sciences faculty building",
+      image: bms,
+      category: "Academic",
+    },
+    {
+      id: "Zenith ICT Center",
       name: "Zenith ICT Center",
+      description: "Computer and ICT facilities",
       image: zenith,
-      url: "location?id=Zenith ICT Center",
-      tag: ["Troubleshooting", "Technical Problem"],
+      category: "Technology",
     },
     {
-      id: "5",
+      id: "NLT",
       name: "NLT",
+      description: "Natural Science Lecture Theatre",
       image: lr,
-      url: "location?id=Natural Science Lecture Theatre",
-      tag: ["Lecture Theatre", "Natural Science"],
+      category: "Academic",
     },
     {
-      id: "6",
+      id: "Lecture Rooms",
       name: "Lecture Rooms",
+      description: "Lecture rooms for various departments",
       image: lr,
-      url: "location?id=Lecture Rooms",
-      tag: ["Lecture"],
+      category: "Academic",
     },
   ];
   return (
@@ -59,36 +60,34 @@ const PopularPlaces: React.FC = () => {
         <h1 className="text-primary font-bold md:text-5xl text-4xl">
           Popular Places 🗺️
         </h1>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 my-12">
-          {places.map((each) => (
-            <div
-              key={each.id}
-              className="overflow-hidden rounded-2xl bg-white shadow-[0_10px_30px_rgba(0,0,0,0.05)]"
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 my-6">
+          {locations.map((location) => (
+            <Link
+              key={location.id}
+              href={`/location/${encodeURIComponent(location.id)}`}
+              className="bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow cursor-pointer overflow-hidden"
             >
               <Image
-                src={each.image}
-                alt={each.name}
-                placeholder="blur"
-                className="h-[200px] object-cover"
+                src={location.image}
+                alt={location.name}
+                className="w-full h-48 object-cover"
               />
-              <div className="p-4">
-                <h1 className="font-bold text-xl">{each.name}</h1>
-                <div className="my-4 flex gap-2 flex-wrap">
-                  {each.tag.map((each) => (
-                    <p
-                      key={each}
-                      className="rounded-2xl bg-[#f0f2f5] w-fit px-4 py-2"
-                    >
-                      {each}
-                    </p>
-                  ))}
+              <div className="p-6">
+                <div className="flex items-center justify-between mb-2">
+                  <span className="text-xs bg-accent/10 text-accent px-2 py-1 rounded-full font-semibold">
+                    {location.category}
+                  </span>
                 </div>
-                <Link href={each.url} className="flex items-center gap-1">
-                  <p className=" text-[#000079] text-lg">View Location</p>{" "}
-                  <BiRightArrowAlt />
-                </Link>
+                <h3 className="font-bold text-xl text-accent mb-2">
+                  {location.name}
+                </h3>
+                <p className="text-secondary">{location.description}</p>
+                <div className="flex items-center gap-2 mt-4 text-accent font-semibold">
+                  <FaLocationDot size={16} />
+                  <span>View Details</span>
+                </div>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       </div>
