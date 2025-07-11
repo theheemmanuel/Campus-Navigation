@@ -66,11 +66,11 @@ const Hero: React.FC = () => {
             </div>
           </div>
         </div>
-        <div className="lg:w-1/2">
+        <div className="md:w-1/2">
           <Image
             src={homeBG}
             alt="home image"
-            className="relative rounded-[30px] overflow-hidden shadow-[0_20px_40px_rgba(0,0,0,0.1)] transform perspective-[1000px] -rotate-y-[5deg] transition-all duration-500 bg-light p-5"
+            className="relative rounded-[30px] overflow-hidden shadow-[0_20px_40px_rgba(0,0,0,0.1)] bg-light p-5"
           />
         </div>
       </div>
