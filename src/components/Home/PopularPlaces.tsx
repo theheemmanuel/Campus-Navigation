@@ -1,59 +1,49 @@
-import Image from "next/image";
+"use client";
+
 import React from "react";
-import chapel from "../../../public/chapel.jpg";
-import bms from "../../../public/bms.jpg";
-import sapetro from "../../../public/sapetro.jpg";
-import zenith from "../../../public/zenith.jpg";
-import lr from "../../../public/lr.png";
-// import { BiRightArrowAlt } from "react-icons/bi";
+import { useLocationContext } from "@/components/ContextApi";
 import Link from "next/link";
+import Image from "next/image";
 import { FaLocationDot } from "react-icons/fa6";
 
 const PopularPlaces: React.FC = () => {
-  const locations = [
-    {
-      id: "RUN Auditorium",
-      name: "RUN Auditorium",
-      description: "Main auditorium for events and worship services",
-      image: chapel,
-      category: "Facilities",
-    },
-    {
-      id: "Faculty of Engineering",
-      name: "Faculty of Engineering",
-      description: "SAPETRO building housing engineering departments",
-      image: sapetro,
-      category: "Academic",
-    },
-    {
-      id: "Faculty of Medical Sciences",
-      name: "Faculty of Medical Sciences",
-      description: "Medical sciences faculty building",
-      image: bms,
-      category: "Academic",
-    },
-    {
-      id: "Zenith ICT Center",
-      name: "Zenith ICT Center",
-      description: "Computer and ICT facilities",
-      image: zenith,
-      category: "Technology",
-    },
-    {
-      id: "NLT",
-      name: "NLT",
-      description: "Natural Science Lecture Theatre",
-      image: lr,
-      category: "Academic",
-    },
-    {
-      id: "Lecture Rooms",
-      name: "Lecture Rooms",
-      description: "Lecture rooms for various departments",
-      image: lr,
-      category: "Academic",
-    },
-  ];
+  const { locations, loading } = useLocationContext();
+
+  const displayLocations = locations.map((loc) => ({
+    id: loc.id,
+    name: loc.title,
+    description: loc.description,
+    image: loc.image,
+    category: loc.label,
+  }));
+
+  if (loading) {
+    return (
+      <div className="bg-[#faf8fd]">
+        <div className="maxWidth px-8 py-10">
+          <h1 className="text-primary font-bold md:text-5xl text-4xl">
+            Popular Places 🗺️
+          </h1>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 my-6">
+            {/* Loading skeleton */}
+            {[...Array(6)].map((_, index) => (
+              <div
+                key={index}
+                className="bg-white rounded-xl shadow-md animate-pulse"
+              >
+                <div className="w-full h-48 bg-gray-200"></div>
+                <div className="p-6">
+                  <div className="h-4 bg-gray-200 rounded mb-2"></div>
+                  <div className="h-3 bg-gray-200 rounded"></div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="bg-[#faf8fd]">
       <div className="maxWidth px-8 py-10">
@@ -61,16 +51,18 @@ const PopularPlaces: React.FC = () => {
           Popular Places 🗺️
         </h1>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 my-6">
-          {locations.map((location) => (
+          {displayLocations.map((location) => (
             <Link
               key={location.id}
-              href={`/location/${encodeURIComponent(location.id)}`}
+              href={`/location/${encodeURIComponent(location.name)}`}
               className="bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow cursor-pointer overflow-hidden"
             >
               <Image
                 src={location.image}
                 alt={location.name}
                 className="w-full h-48 object-cover"
+                width={1000}
+                height={1000}
               />
               <div className="p-6">
                 <div className="flex items-center justify-between mb-2">
