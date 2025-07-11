@@ -5,7 +5,16 @@ import React from "react";
 export const metadata: Metadata = {
   title: "Video Tour | Redeemer's University",
   description:
-    "An interactive campus navigation app for Redeemer's University, helping visitors and students easily find their way around campus with maps, location scanning, and virtual video tours",
+    "Explore video tours of Redeemer's University campus. Discover the beauty and facilities of our campus through virtual tours.",
+  openGraph: {
+    title: "Video Tour | Redeemer's University",
+    description:
+      "Explore video tours of Redeemer's University campus. Discover the beauty and facilities of our campus through virtual tours.",
+    images: [
+      new URL("/gate.jpg", process.env.NEXT_PUBLIC_BASE_URL as string).href,
+    ],
+    type: "website",
+  },
 };
 
 const page: NextPage = () => {

@@ -11,7 +11,6 @@ export const metadata: Metadata = {
   description:
     "An interactive campus navigation app for Redeemer's University, helping visitors and students easily find their way around campus with maps, location scanning, and virtual video tours.",
   applicationName: "Campus Navigation App",
-  // keywords: seoKeywords,
   openGraph: {
     url: process.env.NEXT_PUBLIC_BASE_URL,
     type: "website",
