@@ -10,7 +10,7 @@ import {
 
 // Define types for your location data
 interface Location {
-  id: string;
+  id: number;
   title: string;
   image: string;
   email: string;
@@ -20,10 +20,19 @@ interface Location {
   info?: string;
 }
 
+interface videotour {
+  id: number;
+  title: string;
+  video: string;
+  description: string;
+  duration: string;
+}
+
 interface LocationContextType {
   locations: Location[];
+  videos: videotour[];
   loading: boolean;
-  error: string | null;
+  videoloading: boolean;
 }
 
 export const LocationContext = createContext<LocationContextType | undefined>(
@@ -38,14 +47,13 @@ export const LocationContextProvider = ({
   children,
 }: LocationContextProviderProps) => {
   const [locations, setLocations] = useState<Location[]>([]);
+  const [videos, setVideos] = useState<videotour[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<string | null>(null);
+  const [videoloading, setVideoLoading] = useState<boolean>(true);
 
   const fetchLocations = async () => {
     try {
       setLoading(true);
-      setError(null);
-
       const response = await fetch(
         process.env.NEXT_PUBLIC_SUPABASE_URL + "/CampusNavigation",
         {
@@ -68,9 +76,34 @@ export const LocationContextProvider = ({
       setLocations(data);
       setLoading(false);
     } catch (err) {
-      const errorMessage =
-        err instanceof Error ? err.message : "An unknown error occurred";
-      setError(errorMessage);
+      console.error("Error fetching locations:", err);
+    }
+  };
+  const fetchVideos = async () => {
+    try {
+      setVideoLoading(true);
+      const response = await fetch(
+        process.env.NEXT_PUBLIC_SUPABASE_URL + "/videoTours",
+        {
+          headers: {
+            apikey: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+            Authorization: `Bearer ${process.env
+              .NEXT_PUBLIC_SUPABASE_ANON_KEY!}`,
+          },
+          // cache: "no-store",
+          next: { revalidate: 10 },
+        }
+      );
+      if (!response.ok) {
+        throw new Error(
+          `Failed to fetch locations: ${response.status} ${response.statusText}`
+        );
+      }
+      const data = await response.json();
+      console.log(data);
+      setVideos(data);
+      setVideoLoading(false);
+    } catch (err) {
       console.error("Error fetching locations:", err);
     }
   };
@@ -78,12 +111,14 @@ export const LocationContextProvider = ({
   // Fetch data when component mounts
   useEffect(() => {
     fetchLocations();
+    fetchVideos();
   }, []);
 
   const value: LocationContextType = {
     locations,
     loading,
-    error,
+    videos,
+    videoloading,
   };
 
   return (
