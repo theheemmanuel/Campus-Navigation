@@ -19,7 +19,7 @@ import { usePathname } from "next/navigation";
 const Header: React.FC = () => {
   const pathName = usePathname();
   return (
-    <div className="sticky top-0 shadow-[0_2px_10px_rgba(0,0,0,0.05)] z-100 bg-white">
+    <div className="sticky top-0 shadow-[0_2px_10px_rgba(0,0,0,0.05)] z-200 bg-white">
       <Sheet>
         <div className="maxWidth py-6 md:px-8 px-6 flex items-center justify-between">
           <Image src={logo} alt="logo" className="h-10 w-40" />
@@ -71,7 +71,7 @@ const Header: React.FC = () => {
             </SheetTrigger>
           </div>
         </div>
-        <SheetContent className="z-200 pt-3">
+        <SheetContent className="z-205 pt-3">
           <SheetHeader>
             <SheetTitle className="">
               <Image src={logo} alt="logo" className="h-10 w-40" />

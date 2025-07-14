@@ -3,7 +3,7 @@
 
 import { FaWalking } from "react-icons/fa";
 import React, { useState, useMemo } from "react";
-import sapetro from "../../../public/sapetro.jpg";
+import sapetro from "../../../public/cover.jpg";
 import { CiSearch } from "react-icons/ci";
 import { IoClose } from "react-icons/io5";
 import Image from "next/image";
