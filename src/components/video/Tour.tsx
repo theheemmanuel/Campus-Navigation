@@ -4,92 +4,29 @@
 import { FaWalking } from "react-icons/fa";
 import React, { useState, useMemo } from "react";
 import sapetro from "../../../public/sapetro.jpg";
-import bms from "../../../public/bms.jpg";
-import chapel from "../../../public/chapel.jpg";
-import zenith from "../../../public/zenith.jpg";
-import manna from "../../../public/manna.png";
-import library from "../../../public/library.png";
 import { CiSearch } from "react-icons/ci";
 import { IoClose } from "react-icons/io5";
 import Image from "next/image";
 import { FaPlay } from "react-icons/fa6";
+import { useLocationContext } from "../ContextApi";
 
 const Tour: React.FC = () => {
+  const { videos, videoloading } = useLocationContext();
   const [searchInput, setSearchInput] = useState("");
   const [selectedTour, setSelectedTour] = useState<number | null>(null);
 
-  const tours = [
-    {
-      id: 1,
-      title: "Library -> Faculty of Engineering",
-      details:
-        "A guided walk from the University Library to the Faculty of Engineering building (SAPETRO).",
-      mins: "8 min walk",
-      img: sapetro,
-      videoUrl:
-        "https://yfwctxipjewwxshcdefl.supabase.co/storage/v1/object/public/campusimages//Manna%20Palace%20-%20health%20center.mp4",
-    },
-    {
-      id: 2,
-      title: "Medical Sciences -> Library",
-      details:
-        "Navigate from the Faculty of Medical Sciences to the University Library with this guided tour.",
-      mins: "12 min walk",
-      img: bms,
-      videoUrl:
-        "https://yfwctxipjewwxshcdefl.supabase.co/storage/v1/object/public/campusimages//Manna%20Palace%20-%20health%20center.mp4",
-    },
-    {
-      id: 3,
-      title: "Library -> Auditorium",
-      details:
-        "Quick tour from the Library to RUN Chapel/Auditorium for events and worship services.",
-      mins: "6 min walk",
-      img: chapel,
-      videoUrl:
-        "https://yfwctxipjewwxshcdefl.supabase.co/storage/v1/object/public/campusimages//Manna%20Palace%20-%20health%20center.mp4",
-    },
-    {
-      id: 4,
-      title: "Zenith ICT Center -> Library",
-      details:
-        "Find your way from the Zenith ICT Center to the Library with this helpful video guide.",
-      mins: "10 min walk",
-      img: zenith,
-      videoUrl:
-        "https://yfwctxipjewwxshcdefl.supabase.co/storage/v1/object/public/campusimages//Manna%20Palace%20-%20health%20center.mp4",
-    },
-    {
-      id: 5,
-      title: "Prophet Moses Hall -> Library",
-      details:
-        "Navigate from the Student Hostel area to the Library with this comprehensive video guide.",
-      mins: "15 min walk",
-      img: library,
-      videoUrl:
-        "https://yfwctxipjewwxshcdefl.supabase.co/storage/v1/object/public/campusimages//Manna%20Palace%20-%20health%20center.mp4",
-    },
-    {
-      id: 6,
-      title: "Library -> Cafeteria",
-      details:
-        "Hungry after studying? Follow this quick route from the Library to the main Cafeteria.",
-      mins: "5 min walk",
-      img: manna,
-      videoUrl:
-        "https://yfwctxipjewwxshcdefl.supabase.co/storage/v1/object/public/campusimages//Manna%20Palace%20-%20health%20center.mp4",
-    },
-  ];
+  // Add safety check for videos
+  const safeVideos = videos || [];
 
   // Filter tours based on search input
   const filteredTours = useMemo(() => {
     if (!searchInput.trim()) {
-      return tours;
+      return safeVideos;
     }
-    return tours.filter((tour) =>
+    return safeVideos.filter((tour) =>
       tour.title.toLowerCase().includes(searchInput.toLowerCase())
     );
-  }, [searchInput]);
+  }, [searchInput, safeVideos]);
 
   // Clear search input
   const clearSearch = () => {
@@ -105,6 +42,30 @@ const Tour: React.FC = () => {
   const handleCloseVideo = () => {
     setSelectedTour(null);
   };
+
+  if (videoloading) {
+    return (
+      <div className="bg-[#faf8fd]">
+        <div className="maxWidth px-8 py-10">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 my-6">
+            {/* Loading skeleton */}
+            {[...Array(6)].map((_, index) => (
+              <div
+                key={index}
+                className="bg-white rounded-xl shadow-md animate-pulse"
+              >
+                <div className="w-full h-52 bg-gray-200"></div>
+                <div className="p-6">
+                  <div className="h-4 bg-gray-200 rounded mb-2"></div>
+                  <div className="h-3 bg-gray-200 rounded"></div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="maxWidth p-6">
@@ -127,13 +88,14 @@ const Tour: React.FC = () => {
           </button>
         )}
       </div>
+
       {/* Video Modal */}
       {selectedTour && (
         <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50">
           <div className="bg-white rounded-lg p-6 max-w-4xl w-full mx-4 max-h-[90vh] overflow-y-auto">
             <div className="flex justify-between items-center mb-4">
               <h3 className="text-xl font-bold text-accent">
-                {tours.find((tour) => tour.id === selectedTour)?.title}
+                {safeVideos.find((tour) => tour.id === selectedTour)?.title}
               </h3>
               <button
                 onClick={handleCloseVideo}
@@ -147,23 +109,27 @@ const Tour: React.FC = () => {
                 controls
                 autoPlay
                 className="w-full h-full rounded-lg"
-                src={tours.find((tour) => tour.id === selectedTour)?.videoUrl}
+                src={safeVideos.find((tour) => tour.id === selectedTour)?.video}
               >
                 Your browser does not support the video tag.
               </video>
             </div>
             <div className="mt-4">
               <p className="text-gray-600">
-                {tours.find((tour) => tour.id === selectedTour)?.details}
+                {
+                  safeVideos.find((tour) => tour.id === selectedTour)
+                    ?.description
+                }
               </p>
               <div className="flex items-center gap-2 text-secondary mt-2">
                 <FaWalking />{" "}
-                {tours.find((tour) => tour.id === selectedTour)?.mins}
+                {safeVideos.find((tour) => tour.id === selectedTour)?.duration}
               </div>
             </div>
           </div>
         </div>
       )}
+
       {searchInput && (
         <div className="text-center my-4 text-secondary">
           {filteredTours.length > 0 &&
@@ -175,56 +141,76 @@ const Tour: React.FC = () => {
 
       {/* Tour Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {filteredTours.length > 0 ? (
-          filteredTours.map((each) => (
-            <div
-              key={each.id}
-              className="bg-white rounded-xl shadow-md p-4 hover:shadow-lg transition-shadow"
-            >
-              <div className="relative">
-                <Image
-                  src={each.img}
-                  alt={each.title}
-                  className="rounded-xl mb-4 w-full h-48 object-cover"
-                />
-              </div>
-              <h1 className="text-accent font-bold">{each.title}</h1>
-              <p className="py-4 text-secondary">{each.details}</p>
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-2 text-secondary">
-                  <FaWalking /> {each.mins}
-                </div>
-                <button
-                  onClick={() => handlePlayVideo(each.id)}
-                  className="flex items-center gap-2 bg-accent  cursor-pointer text-white px-4 py-2 rounded-lg hover:bg-accent-dark transition-colors"
-                >
-                  <FaPlay className="text-sm" />
-                  Watch Tour
-                </button>
-              </div>
+        {filteredTours.map((each) => (
+          <div
+            key={each.id}
+            className="bg-white rounded-xl shadow-md p-4 hover:shadow-lg transition-shadow"
+          >
+            <div className="relative">
+              <Image
+                src={sapetro}
+                alt={each.title}
+                className="rounded-xl mb-4 w-full h-48 object-cover"
+              />
             </div>
-          ))
-        ) : searchInput ? (
-          <div className="col-span-full text-center py-12">
-            <div className="text-gray-400 mb-4">
-              <CiSearch size={64} className="mx-auto mb-4" />
+            <h1 className="text-accent font-bold">{each.title}</h1>
+            <p className="py-4 text-secondary">{each.description}</p>
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-2 text-secondary">
+                <FaWalking /> {each.duration}
+              </div>
+              <button
+                onClick={() => handlePlayVideo(each.id)}
+                className="flex items-center gap-2 bg-accent cursor-pointer text-white px-4 py-2 rounded-lg hover:bg-accent-dark transition-colors"
+              >
+                <FaPlay className="text-sm" />
+                Watch Tour
+              </button>
             </div>
-            <h3 className="text-xl font-semibold text-gray-600 mb-2">
-              No tours found
-            </h3>
-            <p className="text-gray-500 mb-4">
-              We couldn&apos;t find any tours matching &quot;{searchInput}
-              &quot;.
-            </p>
-            <button
-              onClick={clearSearch}
-              className="mt-4 text-accent hover:underline"
-            >
-              Clear search and show all tours
-            </button>
           </div>
-        ) : null}
+        ))}
       </div>
+
+      {/* Show empty states only when no tours to display */}
+      {filteredTours.length === 0 && !videoloading && (
+        <div className="text-center py-12">
+          {searchInput ? (
+            // Search returned no results
+            <>
+              <div className="text-gray-400 mb-4">
+                <CiSearch size={64} className="mx-auto mb-4" />
+              </div>
+              <h3 className="text-xl font-semibold text-gray-600 mb-2">
+                No tours found
+              </h3>
+              <p className="text-gray-500 mb-4">
+                We couldn&apos;t find any tours matching &quot;{searchInput}
+                &quot;.
+              </p>
+              <button
+                onClick={clearSearch}
+                className="mt-4 text-accent hover:underline"
+              >
+                Clear search and show all tours
+              </button>
+            </>
+          ) : (
+            // No videos available at all
+            <>
+              <div className="text-gray-400 mb-4">
+                <FaPlay size={64} className="mx-auto mb-4" />
+              </div>
+              <h3 className="text-xl font-semibold text-gray-600 mb-2">
+                No video tours available
+              </h3>
+              <p className="text-gray-500">
+                Video tours are currently not available. Please check back later
+                or contact support.
+              </p>
+            </>
+          )}
+        </div>
+      )}
     </div>
   );
 };
