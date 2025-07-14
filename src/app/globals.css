@@ -144,3 +144,28 @@
   height: 100%;
   width: 100%;
 }
+
+/* Hide the routing instructions panel but keep the route line */
+.leaflet-routing-container {
+  display: none !important;
+}
+
+.leaflet-routing-container.leaflet-routing-container-hide {
+  display: none !important;
+}
+
+/* Style the route line */
+.leaflet-routing-line {
+  stroke: #000079;
+  stroke-width: 4;
+  stroke-opacity: 0.8;
+}
+
+/* Custom marker styles */
+.red-marker-icon svg {
+  filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+.destination-marker-icon svg {
+  filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.3));
+}
