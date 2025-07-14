@@ -3,7 +3,6 @@
 
 import { FaWalking } from "react-icons/fa";
 import React, { useState, useMemo } from "react";
-import sapetro from "../../../public/cover.jpg";
 import { CiSearch } from "react-icons/ci";
 import { IoClose } from "react-icons/io5";
 import Image from "next/image";
@@ -148,9 +147,11 @@ const Tour: React.FC = () => {
           >
             <div className="relative">
               <Image
-                src={sapetro}
+                src={each.img}
                 alt={each.title}
                 className="rounded-xl mb-4 w-full h-48 object-cover"
+                width={"500"}
+                height={"500"}
               />
             </div>
             <h1 className="text-accent font-bold">{each.title}</h1>

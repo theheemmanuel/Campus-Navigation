@@ -26,6 +26,7 @@ interface videotour {
   video: string;
   description: string;
   duration: string;
+  img: string;
 }
 
 interface LocationContextType {
