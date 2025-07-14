@@ -1,7 +1,7 @@
 export const campusPlaces = [
   {
     name: "Main Gate",
-    position: [7.680255096806807, 4.4596083445990615] as [number, number],
+    position: [7.680086338225429, 4.460069965642667] as [number, number],
   },
   {
     name: "University Auditorium",

@@ -12,6 +12,58 @@ const MapComponent = dynamic(() => import("@/components/Map/MapComponent"), {
 });
 
 const MapPage = () => {
+  // Add this function before the MapPage component
+  const openInMaps = (userLocation: [number, number] | null) => {
+    if (!userLocation) {
+      alert("Location not available. Please enable location services first.");
+      return;
+    }
+
+    const [lat, lng] = userLocation;
+    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+    const isAndroid = /Android/.test(navigator.userAgent);
+
+    if (isIOS) {
+      // Try to open Apple Maps first on iOS
+      const appleMapsUrl = `maps://maps.apple.com/?q=${lat},${lng}&z=16`;
+      const googleMapsUrl = `comgooglemaps://?q=${lat},${lng}&zoom=16`;
+      const webFallback = `https://maps.google.com/maps?q=${lat},${lng}&z=16`;
+
+      // Try Apple Maps first
+      window.location.href = appleMapsUrl;
+
+      // Fallback to Google Maps app after a short delay
+      setTimeout(() => {
+        window.location.href = googleMapsUrl;
+
+        // Final fallback to web Google Maps
+        setTimeout(() => {
+          window.open(webFallback, "_blank");
+        }, 1000);
+      }, 1000);
+    } else if (isAndroid) {
+      // Try to open Google Maps app on Android
+      const googleMapsUrl = `geo:${lat},${lng}?q=${lat},${lng}&z=16`;
+      const webFallback = `https://maps.google.com/maps?q=${lat},${lng}&z=16`;
+
+      try {
+        window.location.href = googleMapsUrl;
+
+        // Fallback to web Google Maps
+        setTimeout(() => {
+          window.open(webFallback, "_blank");
+        }, 1000);
+      } catch (error) {
+        window.open(webFallback, "_blank");
+        console.log(error);
+      }
+    } else {
+      // Desktop or other devices - open Google Maps web
+      const webUrl = `https://maps.google.com/maps?q=${lat},${lng}&z=16`;
+      window.open(webUrl, "_blank");
+    }
+  };
+
   const [userLocation, setUserLocation] = useState<[number, number] | null>(
     null
   );
@@ -207,6 +259,14 @@ const MapPage = () => {
               </ul>
             </div>
           </div>
+        </div>
+        <div className="flex justify-center my-6">
+          <button
+            className="bg-accent font-semibold py-2 px-6 rounded-md text-white cursor-pointer"
+            onClick={() => openInMaps(userLocation)}
+          >
+            Open Map
+          </button>
         </div>
       </div>
     </div>
