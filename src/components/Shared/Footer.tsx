@@ -25,8 +25,8 @@ const Footer: React.FC = () => {
         <div>
           <h1 className="font-bold mb-4 text-xl">Emergency</h1>
           <ul className="flex flex-col gap-3 text-secondary text-md">
-            <Link href="">Contact School Authority</Link>
-            <Link href="">Contact School Ambulance</Link>
+            <a href="tel:+2347063195967">Contact School Authority</a>
+            <a href="tel:+2349050960883">Contact School Ambulance</a>
           </ul>
         </div>
         <div>
