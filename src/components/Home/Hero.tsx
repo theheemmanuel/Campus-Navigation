@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Marquee from "react-fast-marquee";
 import React from "react";
-import homeBG from "../../../public/home_bg.png";
+import homeBG from "../../../public/favour.png";
 import Link from "next/link";
 import { BiRightArrowAlt } from "react-icons/bi";
 import { FaLocationDot, FaBuilding, FaMapLocationDot } from "react-icons/fa6";
@@ -71,6 +71,7 @@ const Hero: React.FC = () => {
             src={homeBG}
             alt="home image"
             className="relative rounded-[30px] overflow-hidden shadow-[0_20px_40px_rgba(0,0,0,0.1)] bg-light p-5"
+            placeholder="blur"
           />
         </div>
       </div>

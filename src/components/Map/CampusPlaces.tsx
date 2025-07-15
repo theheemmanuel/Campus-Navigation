@@ -25,11 +25,31 @@ export const campusPlaces = [
   },
   {
     name: "Faculty of Humanities",
-    position: [7.680820535036919, 4.457561573029293] as [number, number],
+    position: [7.681108238558825, 4.457537009222825] as [number, number],
   },
   {
-    name: "Lecture rooms",
-    position: [7.682557829743972, 4.458452772040257] as [number, number],
+    name: "Fac. of Management Sci.",
+    position: [7.680658134901203, 4.457718123400379] as [number, number],
+  },
+  {
+    name: "Works Department",
+    position: [7.678863731633656, 4.457371505515648] as [number, number],
+  },
+  {
+    name: "Lecture rooms (1-12)",
+    position: [7.682550233952315, 4.458195068664271] as [number, number],
+  },
+  {
+    name: "Lecture rooms (13-24)",
+    position: [7.682310799331957, 4.45733822818272] as [number, number],
+  },
+  {
+    name: "Event Center",
+    position: [7.686376387555602, 4.456545483565254] as [number, number],
+  },
+  {
+    name: "Bakery & Water Factory",
+    position: [7.682799103482965, 4.455591069982695] as [number, number],
   },
   {
     name: "Faculty of Natural Science",
@@ -166,5 +186,41 @@ export const campusPlaces = [
   {
     name: "Staff Quaters",
     position: [7.676035835966816, 4.448006466811291] as [number, number],
+  },
+  {
+    name: "Biology Laboratory",
+    position: [7.682995040610457, 4.4578405997860395] as [number, number],
+  },
+  {
+    name: "Chemistry Laboratory",
+    position: [7.6831180601853255, 4.458255418242211] as [number, number],
+  },
+  {
+    name: "Physics Laboratory",
+    position: [7.682879724003494, 4.457373113649823] as [number, number],
+  },
+  {
+    name: "Tourism Village",
+    position: [7.681925226175779, 4.456380810740621] as [number, number],
+  },
+  {
+    name: "Container (Stores)",
+    position: [7.679737565061387, 4.456394378727397] as [number, number],
+  },
+  {
+    name: "Wall of Fame",
+    position: [7.680023080818118, 4.458705533488158] as [number, number],
+  },
+  {
+    name: "Basketball Court",
+    position: [7.6844191471077, 4.457824566882916] as [number, number],
+  },
+  {
+    name: "Lawn Tennis Court",
+    position: [7.683804901491962, 4.458130312391999] as [number, number],
+  },
+  {
+    name: "Volleyball Court",
+    position: [7.6840361880210954, 4.458028068792433] as [number, number],
   },
 ];
